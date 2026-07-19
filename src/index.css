@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  min-height: 100%;
+}
+
+body {
+  background: #060608;
+  color: #f2f2f7;
+  font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Breathing aura on the player screen */
+@keyframes orb-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.09); opacity: 1; }
+}
+@keyframes orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(7%, -5%) scale(1.06); }
+  66% { transform: translate(-6%, 6%) scale(0.96); }
+}
+.orb-breathe { animation: orb-breathe 8s ease-in-out infinite; }
+.orb-inner { animation: orb-drift 11s ease-in-out infinite; }
+.orb-paused, .orb-paused .orb-inner { animation-play-state: paused; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fade-up 0.5s ease both; }
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+.pulse-soft { animation: pulse-soft 2.4s ease-in-out infinite; }
+
+/* Blurred aura blob used inside bento tiles */
+.aura {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(28px);
+  pointer-events: none;
+}
+
+::selection { background: #ff4fa3; color: #060608; }
+
+/* Native (Capacitor) safe-area handling for notches & home indicators.
+   Insets are only non-zero when viewport-fit=cover + running full-screen. */
+:root.native .app-card {
+  padding-top: env(safe-area-inset-top);
+}
+:root.native .app-nav {
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+:root.native .app-card .flex-1 {
+  padding-bottom: calc(7rem + env(safe-area-inset-bottom));
+}
