@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# React Router client-side routes (e.g. /app/journey, /pricing) need to
+# resolve to index.html so a direct load or refresh doesn't 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
