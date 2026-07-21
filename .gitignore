@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 .env
-data/
+/data/
 
 # Native (Capacitor) build artifacts — the ios/ and android/ projects are
 # committed, but their generated build output is not.
